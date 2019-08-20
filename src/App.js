@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import api from './services/api'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+export default class App extends Component {
+  
+  componentDidMount(){
+
+    const publicKey= "001ac6c73378bbfff488a36141458af2"
+
+
+
+    api.get(`characters?ts=thesoer&apikey=${publicKey}&hash=72e5ed53d1398abb831c3ceec263f18b`)
+    .then(function(response) {
+      console.log(response);
+      
+    })
+    .catch(function(error) {
+      console.log(error)
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Marvel API</h1>
+      </div>
+    );
+  }
 }
 
-export default App;
