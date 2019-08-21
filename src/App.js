@@ -1,31 +1,68 @@
-import React, {Component} from 'react';
+import React, { useState, useEffect } from 'react';
 import api from './services/api'
 
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography'
 
-export default class App extends Component {
-  
-  componentDidMount(){
+const useStyles = makeStyles(theme => ({
+root: {
+flexGrow: 1,
+},
+paper: {
+padding: theme.spacing(2),
+textAlign: 'center',
+color: theme.palette.text.secondary,
+},
+}));
 
-    const publicKey= "001ac6c73378bbfff488a36141458af2"
+
+export default function App() {
+  const classes = useStyles();
+
+  const [docs, setDocs] = useState([])
+
+  useEffect(() =>{
+    
+    const fetchData = async() =>{
+      const publicKey= "001ac6c73378bbfff488a36141458af2"
 
 
 
-    api.get(`characters?ts=thesoer&apikey=${publicKey}&hash=72e5ed53d1398abb831c3ceec263f18b`)
+    await api.get(`characters?ts=thesoer&apikey=${publicKey}&hash=72e5ed53d1398abb831c3ceec263f18b`)
     .then(function(response) {
-      console.log(response);
-      
+      console.log(response.data.data.results);
+      setDocs(response.data.data.results)
     })
     .catch(function(error) {
       console.log(error)
     })
-  }
 
-  render() {
-    return (
-      <div>
-        <h1>Marvel API</h1>
-      </div>
+  }
+  fetchData()
+  console.log("dssd");
+  
+
+  }, [])
+
+  return (
+    <div className={classes.root}>
+      <Grid container>
+      <Grid item xs={12}>
+      <Typography variant="h3" component="h2">
+  Marvel API
+</Typography>
+      </Grid>
+      { docs.map((doc, key) =>(
+          <Grid item xs={3} key={key}>
+                <Paper className={classes.paper}>{doc.name}</Paper>
+          </Grid>
+      )) }
+      </Grid>
+    </div>
+
     );
   }
-}
+
 
