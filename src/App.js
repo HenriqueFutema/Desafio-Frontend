@@ -33,7 +33,7 @@ export default function App() {
 
 
 
-    await api.get(`characters?ts=thesoer&apikey=${publicKey}&hash=72e5ed53d1398abb831c3ceec263f18b`)
+    await api.get(`comics?ts=thesoer&apikey=${publicKey}&hash=72e5ed53d1398abb831c3ceec263f18b`)
     .then(function(response) {
       console.log(response.data.data.results);
       setDocs(response.data.data.results)
