@@ -2,21 +2,24 @@ import React, { useState, useEffect } from 'react';
 import api from './services/api'
 
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
+
+
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography'
 
-const useStyles = makeStyles(theme => ({
-root: {
-flexGrow: 1,
-},
-paper: {
-padding: theme.spacing(2),
-textAlign: 'center',
-color: theme.palette.text.secondary,
-},
-}));
+import Card from './components/CardComponent.js'
 
+
+const useStyles = makeStyles(theme => ({
+  root: {
+  flexGrow: 1,
+  },
+  paper: {
+  padding: theme.spacing(2),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+  },
+  }));
 
 export default function App() {
   const classes = useStyles();
@@ -41,7 +44,6 @@ export default function App() {
 
   }
   fetchData()
-  console.log("dssd");
   
 
   }, [])
@@ -55,9 +57,7 @@ export default function App() {
 </Typography>
       </Grid>
       { docs.map((doc, key) =>(
-          <Grid item xs={3} key={key}>
-                <Paper className={classes.paper}>{doc.name}</Paper>
-          </Grid>
+<Card/>
       )) }
       </Grid>
     </div>
