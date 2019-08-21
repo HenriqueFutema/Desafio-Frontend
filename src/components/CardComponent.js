@@ -18,14 +18,14 @@ color: theme.palette.text.secondary,
 
 
 
-export default function Card() {
+export default function Card({data}) {
     const classes = useStyles();
 
   return (
 
     
     <Grid item xs={3}>
-        <Paper className={classes.paper}>AA</Paper>
+        <Paper className={classes.paper}>{data.name}</Paper>
     </Grid>
   );
 }

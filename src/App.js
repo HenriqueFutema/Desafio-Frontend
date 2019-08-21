@@ -57,7 +57,7 @@ export default function App() {
 </Typography>
       </Grid>
       { docs.map((doc, key) =>(
-<Card/>
+<Card data={doc} key={key}/>
       )) }
       </Grid>
     </div>
