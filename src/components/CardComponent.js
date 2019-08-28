@@ -24,6 +24,7 @@ const useStyles = makeStyles(theme => ({
     minHeight: 600,
     maxHeight: 600,
     maxWidth: 345,
+    overflowY: 'scroll',
     margin:theme.spacing(2),
   },
   media: {

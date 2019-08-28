@@ -40,12 +40,15 @@ export default function App() {
     const fetchData = async() =>{
       const publicKey= "001ac6c73378bbfff488a36141458af2"
 
+      const limit = 20
 
-
-      await api.get(`comics?ts=thesoer&apikey=${publicKey}&hash=72e5ed53d1398abb831c3ceec263f18b&limit=20&offset=${reloadDocs}`)
+      await api.get(`comics?ts=thesoer&apikey=${publicKey}&hash=72e5ed53d1398abb831c3ceec263f18b&limit=${limit}&offset=${reloadDocs}`)
       .then(function(response) {
-        console.log(response.data.data.results);
-        setDocs(response.data.data.results)
+          const olderDocs = docs
+
+          const allDocs = [...olderDocs, response.data.data.results]
+  
+          setDocs(allDocs.flat())
       })
       .catch(function(error) {
         console.log(error)
@@ -60,9 +63,11 @@ export default function App() {
     let docsPerPage = reloadDocs
 
     setReloadDocs(docsPerPage += 20)
-    
+
+  
 
   }, [reloadDocs])
+
 
   return (
     <div className={classes.root}>
