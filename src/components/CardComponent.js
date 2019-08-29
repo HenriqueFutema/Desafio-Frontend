@@ -42,7 +42,8 @@ export default function CardComponent({data}) {
   return (
 
     
-    <Grid item xs={3}>
+    <Grid item xs={12} sm={6} md={3} container  direction="row" justify="center"
+    >
       <Card className={classes.card}>
         <CardActionArea>
           <CardMedia
@@ -52,7 +53,7 @@ export default function CardComponent({data}) {
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              {data.title}
+              {(data.title) ? data.title: data.name}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
               {data.description}
